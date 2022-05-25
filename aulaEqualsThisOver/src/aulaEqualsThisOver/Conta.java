@@ -3,6 +3,16 @@ package aulaEqualsThisOver;
 import java.util.Objects;
 
 public class Conta {
+
+	private Integer numeroConta;
+	private Integer agencia;
+	
+	public Conta() {}
+	
+	public Conta(Integer numeroConta, Integer agencia) {
+		this.agencia = agencia;
+		this.numeroConta = numeroConta;
+	}
 	
 	@Override
 	public int hashCode() {
@@ -23,15 +33,6 @@ public class Conta {
 		
 	}
 
-	private Integer numeroConta;
-	private Integer agencia;
-	
-	public Conta() {}
-	
-	public Conta(Integer numeroConta, Integer agencia) {
-		this.agencia = agencia;
-		this.numeroConta = numeroConta;
-	}
 	
 	@Override
 	public String toString() {
