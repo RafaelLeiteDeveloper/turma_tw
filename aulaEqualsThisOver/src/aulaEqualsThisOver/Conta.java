@@ -4,6 +4,25 @@ import java.util.Objects;
 
 public class Conta {
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(agencia, numeroConta);
+	}
+
+	@Override
+	public boolean equals(Object obj){
+		
+		if(obj != null && obj instanceof Conta) {
+			
+			return (getNumeroConta().equals(((Conta) obj).getNumeroConta()) &&
+					getAgencia().equals(((Conta) obj).getAgencia()));
+			
+		} else {
+			return false;
+		}
+		
+	}
+
 	private Integer numeroConta;
 	private Integer agencia;
 	
@@ -19,12 +38,6 @@ public class Conta {
 		return "numeroConta " + numeroConta + "agencia " + agencia;
 	}
 	
-	@Override
-	public int hashCode() {
-		return Objects.hash(agencia, numeroConta);
-	}
-
-
 	public Integer getAgencia() {
 		return agencia;
 	}
@@ -44,3 +57,4 @@ public class Conta {
 
 
 }
+
