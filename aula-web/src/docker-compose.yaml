@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  mysqlsrv:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: user
+      MYSQL_DATABASE: profissional
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./.mysql-data/db:/var/lib/mysql"
+    networks:
+      - mysql-compose-network
+    restart: always
+
+networks: 
+  mysql-compose-network:
+    driver: bridge
