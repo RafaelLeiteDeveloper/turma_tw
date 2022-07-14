@@ -1,0 +1,1 @@
+DELETE FROM profissional.aluno WHERE id = 3;
