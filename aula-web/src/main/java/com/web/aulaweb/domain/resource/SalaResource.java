@@ -1,7 +1,9 @@
 package com.web.aulaweb.domain.resource;
 
 import javax.print.attribute.standard.Media;
+import javax.validation.Valid;
 
+import com.web.aulaweb.domain.model.Sala;
 import com.web.aulaweb.domain.service.SalaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping(value = "sala")
+@AllArgsConstructor
 public class SalaResource {
+
+    private final SalaService salaService;
+
+    @PostMapping
+    public Sala salvar(@RequestBody @Valid SalaRequest salaRequest){
+        return salaService.salvar(salaRequest);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
     //PARAMETROS FORNECIDOS PELO QUERY STRING
     @GetMapping(path = "listar")
@@ -32,10 +57,7 @@ public class SalaResource {
         return "sua idade é " + idade;
     }
 
-    @PostMapping
-    public SalaRequest salvar(@RequestBody SalaRequest salaRequest){
-        return salaRequest;
-    }
+
 
     @PutMapping(path = "{id}")
     public String update(@PathVariable Long id, @RequestBody SalaRequest salaRequest){

@@ -7,26 +7,20 @@ import com.web.aulaweb.domain.resource.SalaRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
+
 @Component
+@AllArgsConstructor
 public class SalaService {
 
-    @Autowired
-    private SalaRepository salaRepository;
+    private final SalaRepository salaRepository;
 
-    public void salvar(){
+    public Sala salvar(SalaRequest salaRequest){
 
-        var obj = salaRepository.findById(5l);
-
-        System.out.println(obj.toString());
-
-        Sala sala = null;
-        
-        salaRepository.save(sala);
+        return salaRepository.save(salaRequest.converterClasse());
 
     }
 
-    public void arthur(SalaRequest obj){
-
-    }
+ 
     
 }
