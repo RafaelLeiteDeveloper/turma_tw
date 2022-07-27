@@ -1,19 +1,21 @@
 package com.web.aulaweb;
 
-import com.web.aulaweb.domain.model.Aluno;
-import com.web.aulaweb.domain.model.Sala;
-import com.web.aulaweb.domain.repository.SalaRepository;
-import com.web.aulaweb.domain.service.SalaService;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class AulaWebApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AulaWebApplication.class, args);	
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+	   ModelMapper modelMapper = new ModelMapper();
+	   return modelMapper;
 	}
 
 }
