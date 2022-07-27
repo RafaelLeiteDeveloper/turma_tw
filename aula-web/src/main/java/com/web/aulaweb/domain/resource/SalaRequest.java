@@ -25,11 +25,11 @@ public class SalaRequest {
     String turma;
 
     public Sala converterClasse(){
-        return Sala.builder()
-            .descricao(this.descricao)
-            .numeroAlunos(this.numeroAlunos)
-            .turma(this.turma)
-            .build();
+        Sala sala = new Sala();
+        sala.setDescricao(this.descricao);
+        sala.setNumeroAlunos(this.numeroAlunos);
+        sala.setTurma(this.turma);
+        return sala;
     }
   
 }

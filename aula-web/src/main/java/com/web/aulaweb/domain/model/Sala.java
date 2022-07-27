@@ -15,8 +15,11 @@ import lombok.Data;
 @Entity
 @Table(name = "sala")
 @Data
-@Builder
 public class Sala {
+
+    public Sala(){
+
+    }
 
     @Id
     @Column(name = "id")

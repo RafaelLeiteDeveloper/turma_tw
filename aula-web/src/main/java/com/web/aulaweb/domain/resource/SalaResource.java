@@ -1,5 +1,7 @@
 package com.web.aulaweb.domain.resource;
 
+import java.util.List;
+
 import javax.print.attribute.standard.Media;
 import javax.validation.Valid;
 
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
@@ -32,32 +33,22 @@ public class SalaResource {
         return salaService.salvar(salaRequest);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    
-
     //PARAMETROS FORNECIDOS PELO QUERY STRING
-    @GetMapping(path = "listar")
-    public String buscar( @RequestParam(required = false) String nome, @RequestParam(required = false) Integer idade){
-        return "Requisição feita do verbo buscar o nome é " + nome + " e sua idade é " + idade;
+    @GetMapping(path = "todos")
+    public List<Sala>  buscar() {
+        return salaService.buscarTodos();
     }
 
     // PARAMETROS FORNECIDOS PELO PATHVARIABEL
-    @GetMapping(path = "{idade:[0-9]+}")
-    public String buscarTodos(@PathVariable Integer idade){
-        return "sua idade é " + idade;
+    @GetMapping(path = "{id:[0-9]+}")
+    public Sala buscarTodos(@PathVariable Long id){
+        return salaService.buscarPorIdOuFalhar(id);
     }
 
-
+    @DeleteMapping(path = "{id}")
+    public void deletar(@PathVariable Long id){
+        salaService.deletar(id);
+    }
 
     @PutMapping(path = "{id}")
     public String update(@PathVariable Long id, @RequestBody SalaRequest salaRequest){
@@ -69,10 +60,7 @@ public class SalaResource {
         return "id=" + id + " nome = " + nome;
     }
 
-    @DeleteMapping(path = "{id}")
-    public String deletar(@PathVariable Long id){
-        return null;
-    }
+   
 
     
 
