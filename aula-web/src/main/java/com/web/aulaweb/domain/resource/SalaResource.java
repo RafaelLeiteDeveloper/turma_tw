@@ -51,17 +51,13 @@ public class SalaResource {
     }
 
     @PutMapping(path = "{id}")
-    public String update(@PathVariable Long id, @RequestBody SalaRequest salaRequest){
-        return "id igual " + id + " obj: " + salaRequest;
+    public Sala update(@PathVariable Long id, @RequestBody SalaRequest salaRequest){
+        return salaService.atualizarSala(id, salaRequest);
     }
 
-    @PatchMapping(path = "nome/{id}")
-    public String atualizarUnico(@PathVariable Long id, @RequestBody String nome ){
-        return "id=" + id + " nome = " + nome;
+    @PatchMapping(path = "descricao/{id}")
+    public Sala atualizarUnico(@PathVariable Long id, @RequestBody String descricao ){
+        return salaService.atualizarDescricaoSala(id, descricao);
     }
-
-   
-
-    
 
 }

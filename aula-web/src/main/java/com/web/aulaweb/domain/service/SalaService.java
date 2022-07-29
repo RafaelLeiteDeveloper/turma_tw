@@ -7,6 +7,7 @@ import com.web.aulaweb.domain.model.Sala;
 import com.web.aulaweb.domain.repository.SalaRepository;
 import com.web.aulaweb.domain.resource.SalaRequest;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -40,6 +41,38 @@ public class SalaService {
         var objeto = buscarPorIdOuFalhar(id);
         salaRepository.delete(objeto);
     }
+
+    public Sala atualizarSala(Long id, SalaRequest salaRequest){
+
+        var entity = buscarPorIdOuFalhar(id);
+
+        verificarDescricaoPadraoEfalhar(salaRequest.getDescricao(), salaRequest.getTurma());
+     
+        BeanUtils.copyProperties(salaRequest, entity, "id");
+
+        return salaRepository.save(entity);
+
+    }
+
+    public void verificarDescricaoPadraoEfalhar(String descricao, String turma){
+        var entity = salaRepository.findByDescricaoAndTurma(descricao,turma);
+
+        if(entity.isPresent()){
+            throw new DefaultException(HttpStatus.BAD_REQUEST, "Não é possivel atualizar este registro com essa descrição");
+        }
+    }
+
+    public Sala atualizarDescricaoSala(Long id, String descricao){
+
+        var entity = buscarPorIdOuFalhar(id);
+
+        entity.setDescricao(descricao);
+
+        return salaRepository.save(entity);
+
+    }
+
+
 
  
     

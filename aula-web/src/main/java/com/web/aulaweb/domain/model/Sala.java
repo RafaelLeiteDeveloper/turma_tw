@@ -34,6 +34,5 @@ public class Sala {
 
     @Column(name = "turma")
     private String turma;
-
     
 }
