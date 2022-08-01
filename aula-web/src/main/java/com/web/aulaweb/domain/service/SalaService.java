@@ -9,7 +9,6 @@ import com.web.aulaweb.domain.repository.SalaRepository;
 import com.web.aulaweb.domain.resource.SalaRequest;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -23,9 +22,7 @@ public class SalaService {
     private final SalaAssembler salaAssembler;
 
     public Sala salvar(SalaRequest salaRequest){
-
         return salaRepository.save(salaAssembler.toModel(salaRequest));
-
     }
 
     public List<Sala> buscarTodos(){

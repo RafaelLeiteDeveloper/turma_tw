@@ -1,5 +1,6 @@
 package com.web.aulaweb.domain.resource;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.print.attribute.standard.Media;
@@ -8,8 +9,13 @@ import javax.validation.Valid;
 import com.web.aulaweb.domain.model.Sala;
 import com.web.aulaweb.domain.service.SalaService;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.sql.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -39,8 +45,15 @@ public class SalaResource {
         return salaService.buscarTodos();
     }
 
+    @GetMapping(value = "limparCache")
+    @CacheEvict(value = "catimbo", allEntries = true)
+    public ResponseEntity desabilitarCache(){
+        return ResponseEntity.ok().build();
+    }
+
     // PARAMETROS FORNECIDOS PELO PATHVARIABEL
     @GetMapping(path = "{id:[0-9]+}")
+    @Cacheable(value = "catimbo")
     public Sala buscarTodos(@PathVariable Long id){
         return salaService.buscarPorIdOuFalhar(id);
     }

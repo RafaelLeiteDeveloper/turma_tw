@@ -1,0 +1,1 @@
+ALTER TABLE profissional.sala ADD ano_formacao INT NULL;

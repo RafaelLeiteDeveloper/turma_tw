@@ -10,20 +10,23 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
+
 @Component
+@AllArgsConstructor
 public class SalaAssembler {
 
-    @Autowired
-	private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
-    public Sala toModel(SalaRequest salaRequest) {
-		return modelMapper.map(salaRequest, Sala.class);
-	}
-	
-	public List<Sala> toCollectionModel(List<SalaRequest> salasRequest) {
-		return salasRequest.stream()
-				.map(sala -> toModel(sala))
-				.collect(Collectors.toList());
-	}
+    public Sala toModel(SalaRequest salaRequest){
+        return modelMapper.map(salaRequest, Sala.class);
+    }
+
+    public List<Sala> toCollectionModel(List<SalaRequest> salasRequest){
+        //lambda functions JAVA 8
+        return  salasRequest.stream()
+                             .map(sala -> toModel(sala))
+                             .collect(Collectors.toList());                             
+    }
     
 }

@@ -20,16 +20,12 @@ public class SalaRequest {
     String descricao;
 
     @PositiveOrZero
-    Integer numeroAlunos;
-
+    Integer totalAlunos;
+ 
     String turma;
 
-    public Sala converterClasse(){
-        Sala sala = new Sala();
-        sala.setDescricao(this.descricao);
-        sala.setNumeroAlunos(this.numeroAlunos);
-        sala.setTurma(this.turma);
-        return sala;
-    }
+    Integer anoFormacao;
+
+    String predio;
   
 }
