@@ -2,6 +2,7 @@ package com.web.aulaweb.domain.service;
 
 import java.util.List;
 
+import com.web.aulaweb.domain.assembler.SalaAssembler;
 import com.web.aulaweb.domain.exception.DefaultException;
 import com.web.aulaweb.domain.model.Sala;
 import com.web.aulaweb.domain.repository.SalaRepository;
@@ -19,10 +20,11 @@ import lombok.AllArgsConstructor;
 public class SalaService {
 
     private final SalaRepository salaRepository;
+    private final SalaAssembler salaAssembler;
 
     public Sala salvar(SalaRequest salaRequest){
 
-        return salaRepository.save(salaRequest.converterClasse());
+        return salaRepository.save(salaAssembler.toModel(salaRequest));
 
     }
 
