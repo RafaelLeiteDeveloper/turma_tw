@@ -13,10 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 public class SalaTeste {
 
-    CamelCaseConver camel;
-
+    private CamelCaseConver camel;
     @BeforeEach
-    void setUp() {
+    public void iniciar(){
         camel = new CamelCaseConver();
     }
 
@@ -27,7 +26,6 @@ public class SalaTeste {
 
     @Test
     public void converterStringParaCamelCase(){
-
         assertEquals("Rafael",camel.converter("rafael"));
     }
 
