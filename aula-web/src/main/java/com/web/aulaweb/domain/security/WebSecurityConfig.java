@@ -7,26 +7,27 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
+
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.httpBasic()
-			
-			.and()
-			.authorizeRequests()
-				.antMatchers(HttpMethod.GET, "/sala/**").permitAll()
-				.anyRequest().authenticated()
-	
-			.and()
-			.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				
-			.and()
-				.csrf().disable();
-	}
-	
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+        .httpBasic()
+        .and()
+        .authorizeRequests()
+            .antMatchers(HttpMethod.POST, "/sala/**").permitAll()
+            .anyRequest().authenticated()
+        
+        .and()
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        
+        .and()
+        .csrf().disable();
+    }
+    
 }
