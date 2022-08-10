@@ -16,18 +16,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .httpBasic()
-        .and()
         .authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/sala/**").permitAll()
             .anyRequest().authenticated()
-        
         .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        
-        .and()
-        .csrf().disable();
+        .oauth2ResourceServer().opaqueToken();
     }
     
 }
