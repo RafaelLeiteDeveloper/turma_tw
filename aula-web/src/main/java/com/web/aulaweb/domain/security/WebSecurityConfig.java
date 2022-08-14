@@ -18,7 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.
             authorizeRequests()
-            .anyRequest().authenticated()
+            .anyRequest().permitAll()
             .and()
             .oauth2ResourceServer().opaqueToken();
       

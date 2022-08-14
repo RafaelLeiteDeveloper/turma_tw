@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.web.aulaweb.domain.assembler.SalaAssembler;
 import com.web.aulaweb.domain.exception.DefaultException;
+import com.web.aulaweb.domain.integration.SalaFinanceiro;
 import com.web.aulaweb.domain.model.Sala;
 import com.web.aulaweb.domain.repository.SalaRepository;
 import com.web.aulaweb.domain.resource.SalaRequest;
@@ -20,6 +21,7 @@ public class SalaService {
 
     private final SalaRepository salaRepository;
     private final SalaAssembler salaAssembler;
+    private final SalaFinanceiro salaFinanceiro;
 
     public Sala salvar(SalaRequest salaRequest){
         return salaRepository.save(salaAssembler.toModel(salaRequest));
@@ -42,6 +44,8 @@ public class SalaService {
     }
 
     public Sala atualizarSala(Long id, SalaRequest salaRequest){
+
+        var valorSala = salaFinanceiro.calcularMensalidadeSala(id);
 
         var entity = buscarPorIdOuFalhar(id);
 
