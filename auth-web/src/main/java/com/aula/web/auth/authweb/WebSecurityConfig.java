@@ -1,4 +1,4 @@
-package com.algaworks.algafood.auth;
+package com.aula.web.auth.authweb;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,27 +13,30 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-			.withUser("thiago")
-				.password(passwordEncoder().encode("123"))
-				.roles("ADMIN")
-			.and()
-			.withUser("joao")
-				.password(passwordEncoder().encode("123"))
-				.roles("USER");
-	}
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-	
-	@Bean
-	@Override
-	protected AuthenticationManager authenticationManager() throws Exception {
-		return super.authenticationManager();
-	}
-	
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+       auth.inMemoryAuthentication()
+            .withUser("thiago")
+                .password(passwordEncoder().encode("123"))
+                .roles("ADMIN")
+
+            .and()
+            
+            .withUser("joao")
+                .password(passwordEncoder().encode("123"))
+                .roles("USER");
+    }
+
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
+    
 }
