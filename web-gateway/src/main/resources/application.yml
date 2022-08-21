@@ -1,0 +1,26 @@
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+
+        - id: aula
+          uri: lb://aula
+          predicates:
+            - Path=/sala/**
+server:
+  port: 8084
+  servlet:
+    context-path: /gateway
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8085/eureka/
+    fetch-registry: true
+    register-with-eureka: true
