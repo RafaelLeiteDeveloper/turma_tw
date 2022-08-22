@@ -1,3 +1,4 @@
+
 spring:
   main:
     web-application-type: reactive
@@ -10,7 +11,9 @@ spring:
         - id: aula
           uri: lb://aula
           predicates:
-            - Path=/sala/**
+            - Path=/sala/**,
+              /endereco/**,
+              
 server:
   port: 8084
   servlet:

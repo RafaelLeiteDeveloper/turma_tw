@@ -1,4 +1,4 @@
-package com.web.discovery.webdiscovery;
+package com.web.discovey.discovey;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
 @EnableEurekaServer
-public class WebDiscoveryApplication {
+public class DiscoveyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebDiscoveryApplication.class, args);
+		SpringApplication.run(DiscoveyApplication.class, args);
 	}
 
 }

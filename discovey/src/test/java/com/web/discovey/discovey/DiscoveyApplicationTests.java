@@ -1,10 +1,10 @@
-package web.financeiro.projetowebfinanceiro;
+package com.web.discovey.discovey;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProjetoWebFinanceiroApplicationTests {
+class DiscoveyApplicationTests {
 
 	@Test
 	void contextLoads() {
