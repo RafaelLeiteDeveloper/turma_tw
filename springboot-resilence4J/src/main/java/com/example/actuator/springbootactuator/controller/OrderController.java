@@ -14,25 +14,22 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping(value = "novo")
 public class OrderController {
 
-    private static final String ORDER_SERVICE = "orderService";
-    @Autowired
-    private RestTemplate restTemplate;
+  @Autowired
+  private RestTemplate restTemplate;
 
-    @Bean
-    public RestTemplate getRestTemplate() {
-        return new RestTemplate();
-    }
+  private static final String ORDER_SERVICE = "orderService";
 
-    @GetMapping("/order")
-    @CircuitBreaker(name=ORDER_SERVICE, fallbackMethod = "orderFallback")
-    public ResponseEntity<String> createOrder(){
-        String response = restTemplate.getForObject("http://localhost:8081/item", String.class);
-        return new ResponseEntity<String>(response, HttpStatus.OK);
-    }
-    public ResponseEntity<String> orderFallback(Exception e){
-        return new ResponseEntity<String>("Item service is down", HttpStatus.OK);
+  @GetMapping("/order")
+  @CircuitBreaker(name=ORDER_SERVICE, fallbackMethod = "orderFallback")
+  public ResponseEntity<String> createOrder(){
+      String response = restTemplate.getForObject("http://localhost:8081/item", String.class);
+      return new ResponseEntity<String>(response,HttpStatus.OK);
+  }
 
-    }
+  public ResponseEntity<String> orderFallback(Exception e){
+    return new ResponseEntity<String>("Serviço offline", HttpStatus.OK);
+  }
+
 
 
 
