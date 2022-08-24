@@ -14,8 +14,13 @@ import org.hibernate.sql.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cloud.aws.messaging.config.annotation.NotificationMessage;
+import org.springframework.cloud.aws.messaging.listener.SqsMessageDeletionPolicy;
+import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -72,5 +77,12 @@ public class SalaResource {
     public Sala atualizarUnico(@PathVariable Long id, @RequestBody String descricao ){
         return salaService.atualizarDescricaoSala(id, descricao);
     }
+
+    @SqsListener(value = "queueIntegradorImovelSite", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
+	@MessageMapping
+	public void receiveIdImovelSite(@NotificationMessage @Payload String idImoveisStr) throws Exception {
+	        System.out.println(idImoveisStr);
+
+	}
 
 }
